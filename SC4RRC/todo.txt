@@ -1,0 +1,37 @@
+
+Aspect Ration for Perlin Noise
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Problem:
+	Perlin Noise currently works by mapping a regular grid with random height
+	values at the vertices to the heightmap. The regular grid is always a 
+	square in the current implementation. This may lead to stretching artifacts
+	when creating maps that deviate strongly from that square shape.
+
+  Solution:
+	Incorporate the heightmap's aspect ratio in the addFrequency method.
+	The grid should then be created not in a square shape but in a shape 
+	similar to the heightmap.
+	
+	
+Water Percentage Adjustment Is Too Slow
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Problem:
+	Adjusting the height values in such a way that the exact percentage that 
+	the user has defined is under water requires copying all height values into
+	a list and sorting that list. This can take quite some time for large maps.
+
+  Solution:
+	Either a completely new approach has to be found or at least the list
+	creation step can be adjusted in such a way that the values are added into
+	the list in a sorted order already.
+	
+
+Use Second Derivative for Displacement
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Problem:
+	Strong displacements on an already strongly bent surface may lead to
+	unnaturally steep ledges and bents in the landscape. 
+	
+  Solution:
+	If I could find a way to determine the second derivative of the terrain 
+	surface at the point, I could use that as a factor in the displacement.
