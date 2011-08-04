@@ -1,0 +1,12 @@
+syntax: glob
+debug/*
+release/*
+test/*
+test2/*
+*/doc/*
+*/Debug/*
+*/Release/*
+*/depend/*
+*.log
+*.exe
+*.dll
