@@ -115,7 +115,7 @@ class Perlin : public SC4Landscape
 	__inline void adjustHeightmap(float* heightmap)
 	{
 		adjustMinMax(heightmap);
-		//adjustWater(heightmap);
+		adjustWater(heightmap);
 	}
 
 	/** @see adjustHeightmap */

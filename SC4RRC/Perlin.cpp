@@ -286,29 +286,22 @@ void Perlin::adjustWater(float* heightmap)
 	for(int i=0; i < wpos; i++) { it++; }
 	float w = it->value;
 
-	// compute coefficients for adjusting polynomial
-	// the polynomial is of the form x³+ax²+bx+c and it must be 1 at its
-	// start and end point (0.0 and 1.0) and it must be 83/w at the water 
-	// percentage position
-	float A = water*water*water - 83.0f/w + 1.0f;
-	float B = water*(water-1.0f);
+	// Compute coefficients for adjusting polynomial.
+	// The polynomial is of the form ax²+bx+c and it must be 0 for x=0,
+    // 255 for x=255 and 83 for x=w.
+    // Since c must be 0, we ignore it.
+    float w2 = w*w;
+	float A = (83 - w) / (w2 - 255*w);
+	float B = (w2 - 21165) / (w2 - 255*w);
+
+    std::ostringstream o;
+    o << "water value at position " << wpos << " is " << w << ", coefficients: A=" << A << ", B=" << B;
+    LogManager::log (o.str());
 
 	LogManager::log("adjusting height values");
-	// adjust height values and copy them back to the heightmap
-	it = heightlist.begin();
-	float step = 1.0f / float(width*height);
-	float pos = 0.0f;
-	float a = (A-water)/B;
-	float b = (A-water*water)/B;
-
-	for(int i=0; i < width*height; i++)
-	{
-		float &x = pos;
-		float factor = 1.0f + x*(b+x*(a+x));
-
-		heightmap[ it->pos ] = it->value * factor;
-
-		pos += step;
-		it++;
-	}
+    for (int i=0; i < width * height; i++)
+    {
+        float h = heightmap[i];
+        heightmap[i] = A * h * h + B * h;
+    }
 }
