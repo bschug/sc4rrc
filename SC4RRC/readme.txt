@@ -78,3 +78,33 @@ detail level:
 	exponentially with the detail level, so don't be surprised if level 10 takes 
 	MUCH longer than level 9. This value must be an integer number.
 	Example: 6
+
+
+
+Perlin Noise Options
+
+roughness:
+	The higher this is, the steeper will the slopes on the terrain be. 
+	Increasing this value makes the mountains higher and the valleys deeper.
+	Example: 0.5
+
+detail level:
+	Detail of computation. The higher this is, the more detailed the resulting 
+	landscape will be, but it will also take longer to compute. Also, more detail 
+	is not always what you want. Keep in mind that you still want to build a city 
+	on the map.
+	Example: 6
+
+peak:
+	The highest value the algorithm is allowed to generate. Allowed values are
+	between 0 and 255. Keep in mind that sea level is at 83.
+	Example: 220
+
+bottom:
+	The lowest value the algorithm is allowed to generate. See peak.
+	Example: 30
+
+water percentage:
+	How much of the map should be covered in water. Even though this says percentage,
+	the program actually expects a number between 0 and 1.
+	Example: 0.2
