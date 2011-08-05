@@ -35,6 +35,7 @@
 #ifndef SMOOTHTRIANGLEDEBUG_H
 #define SMOOTHTRIANGLEDEBUG_H
 
+#include "config.hpp"
 #include "SC4Landscape.h"
 #include "Vec3f.h"
 
@@ -67,7 +68,7 @@ struct Vertex
  *	whole mesh. This leads to much lower memory requirements, allowing you to
  *	use much higher detail levels.
  */
-class DynamicTriangleGrid : public SC4Landscape
+class SC4RRC_API DynamicTriangleGrid : public SC4Landscape
 {
 	Vertex A; ///< upper left corner
 	Vertex B; ///< upper right corner

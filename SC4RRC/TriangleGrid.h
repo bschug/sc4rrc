@@ -35,6 +35,7 @@
 #ifndef TRIANGLEGRID_H
 #define TRIANGLEGRID_H
 
+#include "config.hpp"
 #include "SC4Landscape.h"
 
 /**	A vertex of a FractalTriangle.
@@ -75,7 +76,7 @@ struct Vertex
  *	I just keep it in here because it is easy to understand and if you 
  *	understand this one, you will also understand the DynamicTriangleGrid.
  */
-class StaticTriangleGrid : public SC4Landscape
+class SC4RRC_API StaticTriangleGrid : public SC4Landscape
 {
 	///////////////////////////////////////////////////////////////////////////
 	//			Classes used by StaticTriangleGrid
@@ -204,7 +205,7 @@ public:
  *	whole mesh. This leads to much lower memory requirements, allowing you to
  *	use much higher detail levels.
  */
-class DynamicTriangleGrid : public SC4Landscape
+class SC4RRC_API DynamicTriangleGrid : public SC4Landscape
 {
 	Vertex A; ///< upper left corner
 	Vertex B; ///< upper right corner

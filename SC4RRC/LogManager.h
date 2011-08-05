@@ -30,6 +30,8 @@
 #include <sstream>
 #include <fstream>
 
+#include "config.hpp"
+
 // forward declaration
 struct SDL_mutex;
 
@@ -47,7 +49,7 @@ struct SDL_mutex;
  *				void SDL_mutexV(SDL_mutex*) \n
  *				int SDL_GetTicks()
  */
-class LogManager 
+class SC4RRC_API LogManager 
 {
 private:
 	/** Points to the only allowed instance of the class. */
@@ -128,7 +130,11 @@ public:
 	 *	If you set fullreport to true, all messages will be written to the log
 	 *	file, just as if _DEBUG was defined.
 	 */
-	static void setFullReport(bool b) { fullreport = b; }
+	static void setFullReport(bool b) 
+    { 
+        fullreport = b; 
+        log ("detailed logging enabled");
+    }
 };
 
 #endif

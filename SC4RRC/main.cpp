@@ -39,7 +39,7 @@
 #include "Perlin.h"
 #include "SmoothTriangleDebug.h"
 
-#ifdef WIN32
+#ifdef _WIN32
 #	define WIN32_LEAN_AND_MEAN
 #	include <windows.h>
 #endif
@@ -206,6 +206,12 @@ int main(int argc, char** argv)
 	{
 		seed = atoi(seed_str.c_str());
 	}
+
+    if (argc > seed_arg_nr + 1)
+    {
+        if (std::string(argv[seed_arg_nr + 1])=="--fullreport")
+            LogManager::setFullReport (true);
+    }
 	
 	if(generator == STATIC)
 	{

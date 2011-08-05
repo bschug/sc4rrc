@@ -27,9 +27,11 @@
 #ifndef SC4LANDSCAPE_H
 #define SC4LANDSCAPE_H
 
+#include "config.hpp"
+
 
 /**	Base class for fractal terrain generators. */
-class SC4Landscape
+class SC4RRC_API SC4Landscape
 {
 protected:
 	int width; 

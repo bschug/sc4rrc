@@ -26,6 +26,7 @@
 #ifndef SC4RRC__SMOOTHTRIANGLEGRID_H
 #define SC4RRC__SMOOTHTRIANGLEGRID_H
 
+#include "config.hpp"
 #include "SC4Landscape.h"
 #include "Vec3f.h"
 
@@ -63,7 +64,7 @@ struct SmoothVertex
  *	lines. Instead, they are curved, and the curvature is determined by the
  *	surface normals of the respective triangles.
  */
-class SmoothTriangleGrid : public SC4Landscape
+class SC4RRC_API SmoothTriangleGrid : public SC4Landscape
 {
 	SmoothVertex A; ///< upper left corner
 	SmoothVertex B; ///< upper right corner

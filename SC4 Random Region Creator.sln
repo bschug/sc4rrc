@@ -1,9 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SC4RRC", "SC4RRC\SC4RRC.vcxproj", "{A147AF97-A97F-47E1-9980-093B9C9FFFE5}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SC4RRC_lib", "SC4RRC\SC4RRC.vcxproj", "{A147AF97-A97F-47E1-9980-093B9C9FFFE5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{500C1C78-C985-418D-8E03-3D9752BB92FE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sc4rrc_win", "sc4rrc_win\sc4rrc_win.vcxproj", "{9DD1A7FB-6AC5-4B3B-9987-28F5E7F0454E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A147AF97-A97F-47E1-9980-093B9C9FFFE5} = {A147AF97-A97F-47E1-9980-093B9C9FFFE5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sc4rrc_exe", "SC4RRC\sc4rrc_exe.vcxproj", "{AB148299-2E19-4AF9-997C-9529916DF97C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A147AF97-A97F-47E1-9980-093B9C9FFFE5} = {A147AF97-A97F-47E1-9980-093B9C9FFFE5}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +29,14 @@ Global
 		{500C1C78-C985-418D-8E03-3D9752BB92FE}.Debug|Win32.Build.0 = Debug|Win32
 		{500C1C78-C985-418D-8E03-3D9752BB92FE}.Release|Win32.ActiveCfg = Release|Win32
 		{500C1C78-C985-418D-8E03-3D9752BB92FE}.Release|Win32.Build.0 = Release|Win32
+		{9DD1A7FB-6AC5-4B3B-9987-28F5E7F0454E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9DD1A7FB-6AC5-4B3B-9987-28F5E7F0454E}.Debug|Win32.Build.0 = Debug|Win32
+		{9DD1A7FB-6AC5-4B3B-9987-28F5E7F0454E}.Release|Win32.ActiveCfg = Release|Win32
+		{9DD1A7FB-6AC5-4B3B-9987-28F5E7F0454E}.Release|Win32.Build.0 = Release|Win32
+		{AB148299-2E19-4AF9-997C-9529916DF97C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AB148299-2E19-4AF9-997C-9529916DF97C}.Debug|Win32.Build.0 = Debug|Win32
+		{AB148299-2E19-4AF9-997C-9529916DF97C}.Release|Win32.ActiveCfg = Release|Win32
+		{AB148299-2E19-4AF9-997C-9529916DF97C}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

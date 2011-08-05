@@ -28,6 +28,7 @@
 
 #include <SDL/SDL_types.h>
 
+#include "config.hpp"
 #include "SC4Landscape.h"
 
 typedef unsigned int uint;
@@ -38,7 +39,7 @@ __inline int intfloor(float f) { return f >= 0 ? int(f) : int(f)-1; }
  *	This class implements the algorithm as it is found on
  *	http://wiki.delphigl.com/index.php/Perlin_Noise
  */
-class Perlin : public SC4Landscape
+class SC4RRC_API Perlin : public SC4Landscape
 {
 	/** Interpolates between two values.
 	 *	@param w	Weight of b. The heigher this is, the closer the result
