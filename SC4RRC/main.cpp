@@ -42,6 +42,16 @@
 #ifdef _WIN32
 #	define WIN32_LEAN_AND_MEAN
 #	include <windows.h>
+
+    int initSDL (Uint32 flags)
+    {
+        int result = SDL_Init (flags);
+        freopen("CON", "w", stdout);
+        freopen("con", "w", stderr);
+        return result;
+    }
+#else
+    int initSDL (Uint32 flags) { return SDL_Init (flags); }
 #endif
 
 __inline float randf() { return (float)rand() / (float)RAND_MAX; }
