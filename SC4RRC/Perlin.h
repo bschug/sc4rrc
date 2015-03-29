@@ -116,13 +116,10 @@ class SC4RRC_API Perlin : public SC4Landscape
 	__inline void adjustHeightmap(float* heightmap)
 	{
 		adjustMinMax(heightmap);
-		adjustWater(heightmap);
 	}
 
 	/** @see adjustHeightmap */
 	void adjustMinMax(float* heightmap);
-	/** @see adjustHeightmap */
-	void adjustWater(float* heightmap);
 
 	float roughness;
 	int detail;
@@ -131,18 +128,6 @@ class SC4RRC_API Perlin : public SC4Landscape
 	int peak;
 	float water;
 
-	struct HeightValue
-	{
-		float value;
-		int pos;
-
-		HeightValue(float value, int pos) : value(value),pos(pos) { }
-
-		bool operator<(const HeightValue& v) const
-		{
-			return value < v.value;
-		}
-	};
 
 public:
 	/** @param width	@see SC4Landscape::SC4Landscape

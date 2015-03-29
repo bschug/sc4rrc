@@ -25,9 +25,14 @@
 
 #define SC4RRC_LIB
 
+#include <algorithm>
+#include <cassert>
 #include <cstdlib>
-#include <limits>
 #include <list>
+#include <vector>
+
+#include <limits>
+using std::numeric_limits;
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -37,13 +42,14 @@
 
 #include "Perlin.h"
 #include "LogManager.h"
+#include "postprocessing.h"
 
 __inline float randf() { return float(rand()-(RAND_MAX/2)) / float(RAND_MAX); }
+__inline float randf(float min, float max) { return min + fabs(randf()) * (max - min); }
 
 __inline int MAX(int a, int b) { return a>b?a:b; }
 __inline int MIN(int a, int b) { return a<b?a:b; }
 
-void blurImage(SDL_Surface* image, int blur_amount);
 
 //-----------------------------------------------------------------------------
 
@@ -139,6 +145,8 @@ void Perlin::writeImage(const char *filename)
 	delete[] heightmap;
 
 	blurImage(image,blur);
+    adjustWaterPercentage (image, water);
+    adjustLevels (image);
 
 	LogManager::log("creating preview",true);
 
@@ -254,56 +262,4 @@ void Perlin::adjustMinMax(float *heightmap)
 		heightmap[i] *= factor;
 		heightmap[i] += float(bottom);
 	}
-}
-
-//-----------------------------------------------------------------------------
-
-/** Adjusts the water level.
- *	First, the values on the heightmap are sorted.
- *	Then the height value at the desired water percentage is retrieved.
- *	Then the values are adjusted in such a way that the value at the
- *	desired position is just at sea level.
- *	This is done by appling a third-grade polynomial on the heightfield
- *	such that the min and max points are preserved and the water level
- *	is at the desired height.
- */
-void Perlin::adjustWater(float* heightmap)
-{
-	LogManager::log("Building heightlist");
-
-	// sort height values in a list
-	std::list<HeightValue> heightlist;
-	for(int i=0; i < width*height; i++)
-	{
-		heightlist.push_back(HeightValue(heightmap[i],i));
-	}
-
-	LogManager::log("Sorting heightlist");
-	heightlist.sort();
-	
-	LogManager::log("Finding current water value");
-	// find current value at desired water percentage position
-	int wpos = int(float(width*height)*water);
-	std::list<HeightValue>::iterator it = heightlist.begin();
-	for(int i=0; i < wpos; i++) { it++; }
-	float w = it->value;
-
-	// Compute coefficients for adjusting polynomial.
-	// The polynomial is of the form ax²+bx+c and it must be 0 for x=0,
-    // 255 for x=255 and 83 for x=w.
-    // Since c must be 0, we ignore it.
-    float w2 = w*w;
-	float A = (83 - w) / (w2 - 255*w);
-	float B = (w2 - 21165) / (w2 - 255*w);
-
-    std::ostringstream o;
-    o << "water value at position " << wpos << " is " << w << ", coefficients: A=" << A << ", B=" << B;
-    LogManager::log (o.str());
-
-	LogManager::log("adjusting height values");
-    for (int i=0; i < width * height; i++)
-    {
-        float h = heightmap[i];
-        heightmap[i] = A * h * h + B * h;
-    }
 }

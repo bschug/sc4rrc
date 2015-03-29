@@ -32,6 +32,7 @@
 
 #include "LogManager.h"
 #include "TriangleGrid.h"
+#include "postprocessing.h"
 
 #pragma warning(disable:4244)
 
@@ -241,38 +242,6 @@ int DynamicTriangleGrid::_getHeightAt(int x, int y,
 		return _getHeightAt(x,y,AB,AC,BC,depth-1);
 	}
 
-}
-
-//-----------------------------------------------------------------------------
-
-/**	Blurs the image.
- *	This function assigns to each pixel the average of all surrounding pixels.
- *	This is repeated <blur_amount> times.
- */
-void blurImage(SDL_Surface* image, int blur_amount)
-{
-	LogManager::log("blurring image",true);
-
-	for(int i=0; i<blur_amount; i++)
-		for(int y=1; y<image->h-1; y++)
-			for(int x=1; x<image->w-1; x++)
-			{
-				int sum=0;
-				int nr_of_samples=0;
-
-				for(int yy=y-1; yy<=y+1; yy++)
-				{
-					for(int xx=x-1; xx<=x+1; xx++)
-					{
-						int ofs = xx + yy * image->pitch;
-						sum += ((Uint8*)image->pixels)[ofs];
-						nr_of_samples++;
-					}
-				}
-
-				int ofs = x+y*image->pitch;
-				((Uint8*)image->pixels)[ofs] = (sum/nr_of_samples);
-			}
 }
 
 //-----------------------------------------------------------------------------

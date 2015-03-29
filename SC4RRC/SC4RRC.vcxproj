@@ -51,6 +51,7 @@
     <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sc4rrc</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sc4rrc</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -102,6 +103,7 @@
   <ItemGroup>
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="Perlin.cpp" />
+    <ClCompile Include="postprocessing.cpp" />
     <ClCompile Include="SmoothTriangleDebug.cpp" />
     <ClCompile Include="SmoothTriangleGrid.cpp" />
     <ClCompile Include="TriangleGrid.cpp" />
@@ -110,6 +112,7 @@
     <ClInclude Include="config.hpp" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="Perlin.h" />
+    <ClInclude Include="postprocessing.h" />
     <ClInclude Include="SC4Landscape.h" />
     <ClInclude Include="SmoothTriangleDebug.h" />
     <ClInclude Include="SmoothTriangleGrid.h" />

@@ -35,6 +35,23 @@
 // forward declaration
 struct SDL_mutex;
 
+#define SC4_DBG(msg) \
+{ \
+    std::ostringstream o; \
+    o << msg; \
+    LogManager::log (o.str(), false); \
+    o.str (""); \
+}
+
+#define SC4_LOG(msg) \
+{ \
+    std::ostringstream o; \
+    o << msg; \
+    LogManager::log (o.str(), true); \
+    o.str (""); \
+}
+
+
 /**	This singleton manages all access to the log file. 
  *
  *	@attention	This class needs the SDL library for its thread access 
