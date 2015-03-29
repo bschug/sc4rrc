@@ -1,0 +1,5 @@
+SC4RRC/doc/*
+SC4RRC/Debug/*
+SC4RRC/Release/*
+*.log
+*.exe
